@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Historial{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="fw-bold text-primary">📖 Historial del usuario</h2>
+
+  <table class="table table-hover mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>ID Resultado</th>
+        <th>Carrera Recomendada</th>
+        <th>Puntaje</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in historial %}
+      <tr>
+        <td>{{ h.id_resultado }}</td>
+        <td>{{ h.carrera_recomendada }}</td>
+        <td>{{ h.puntaje }}</td>
+        <td>{{ h.fecha }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{{ url_for('resultados') }}" class="btn btn-secondary mt-3">
+    ⬅ Volver a Resultados
+  </a>
+</div>
+{% endblock %}

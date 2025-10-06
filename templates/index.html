@@ -1,0 +1,142 @@
+{% extends 'base.html' %} 
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<style>
+  :root {
+    --rojo-instituto: #d62828;
+    --azul-instituto: #003566;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--azul-instituto), #0d1b2a);
+    color: #fff;
+  }
+
+  .logo {
+    width: 150px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  h1 {
+    color: var(--rojo-instituto);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease;
+  }
+
+  p.lead {
+    color: #e6e6e6;
+    animation: fadeIn 1.5s ease;
+  }
+
+  .btn-start {
+    background: linear-gradient(to right, var(--rojo-instituto), var(--azul-instituto));
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    background: linear-gradient(to right, var(--azul-instituto), var(--rojo-instituto));
+  }
+
+  .badge {
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .career-icons i {
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .career-icons i:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+
+  .icon-large {
+    font-size: 5rem;
+    color: var(--rojo-instituto);
+    text-shadow: 0 0 15px rgba(214, 40, 40, 0.6);
+    animation: bounce 2s infinite ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+</style>
+
+<div class="container text-center mt-5 mb-5">
+
+  <!-- Logo -->
+  <div class="mb-4">
+    <img src="{{ url_for('static', filename='img/logo_instituto.jpg') }}" 
+         alt="Instituto José Castillo" class="logo">
+  </div>
+
+  <!-- Título -->
+  <h1 class="fw-bold mb-3">🎓 Bienvenido al Test Vocacional</h1>
+  
+  <!-- Subtítulo -->
+  <p class="lead mb-4">
+    Descubre la carrera que mejor se adapta a ti.<br>
+    Responde las preguntas y encuentra la orientación perfecta para tu futuro.
+  </p>
+
+  <!-- Botón principal -->
+  <a href="{{ url_for('start_test') }}" class="btn btn-lg px-5 py-3 shadow-lg btn-start">
+    🚀 Iniciar Test
+  </a>
+
+  <!-- Carreras -->
+  <div class="mt-5">
+    <h4 class="fw-semibold text-white mb-3">🎯 Carreras disponibles:</h4>
+    <span class="badge bg-primary me-2 px-3 py-2">Sistemas Informáticos</span>
+    <span class="badge bg-danger me-2 px-3 py-2">Mecánica Automotriz</span>
+    <span class="badge" style="background:linear-gradient(to right,#0d6efd,#dc3545); color:white;">Electromecánica</span>
+    <span class="badge bg-light text-dark border border-primary px-3 py-2">Industria de Alimentos</span>
+  </div>
+
+  <!-- Íconos -->
+  <div class="career-icons mt-4 d-flex justify-content-center gap-4">
+    <i class="bi bi-laptop text-primary fs-3" title="Sistemas Informáticos"></i>
+    <i class="bi bi-gear text-danger fs-3" title="Mecánica Automotriz"></i>
+    <i class="bi bi-lightning-charge-fill text-warning fs-3" title="Electromecánica"></i>
+    <i class="bi bi-basket-fill text-success fs-3" title="Industria de Alimentos"></i>
+  </div>
+
+  <!-- Ícono decorativo -->
+  <div class="mt-5">
+    <i class="bi bi-mortarboard-fill icon-large"></i>
+  </div>
+
+</div>
+
+{% endblock %}

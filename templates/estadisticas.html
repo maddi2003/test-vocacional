@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}📊 Estadísticas - Test Vocacional{% endblock %}
+{% block content %}
+
+<style>
+  :root {
+    --rojo-instituto: #d62828;
+    --azul-instituto: #003566;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--azul-instituto), #0d1b2a);
+    color: #fff;
+  }
+
+  h2 {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .stat-card {
+    border: 3px solid var(--rojo-instituto);
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .stat-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-card h5 {
+    color: var(--azul-instituto);
+  }
+
+  .collapse {
+    transition: all 0.4s ease;
+  }
+
+  .table {
+    color: #000;
+  }
+
+  .table thead {
+    background-color: var(--azul-instituto);
+    color: #fff;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f1f5ff;
+  }
+
+  .badge-count {
+    background-color: var(--rojo-instituto);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 0.4em 1em;
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rojo-instituto), #ff595e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    box-shadow: 0 4px 10px rgba(214, 40, 40, 0.4);
+  }
+
+  .icon-circle i {
+    font-size: 1.8rem;
+    color: white;
+  }
+</style>
+
+<div class="container mt-5">
+  <h2 class="text-center fw-bold mb-5">📊 Estadísticas Generales del Test Vocacional</h2>
+
+  <div class="row g-4 mb-4">
+    {% for fila in resumen %}
+    <div class="col-md-4">
+      <div class="stat-card text-center shadow-sm" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}">
+        <div class="card-body">
+          <div class="icon-circle mb-2">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <h5 class="fw-bold">{{ fila.carrera }}</h5>
+          <p class="text-muted mb-1">Total de usuarios</p>
+          <h3 class="fw-bold text-dark">{{ fila.total_usuarios }}</h3>
+          <span class="text-primary small fw-semibold">Haz clic para ver usuarios 👇</span>
+        </div>
+      </div>
+
+      <!-- Panel de usuarios por carrera -->
+      <div class="collapse mt-3" id="collapse{{ loop.index }}">
+        <div class="card card-body bg-light shadow-sm border-0">
+          <h6 class="text-center fw-bold text-dark mb-3">{{ fila.carrera }}</h6>
+          <div class="table-responsive">
+            <table class="table table-sm table-bordered align-middle text-center mb-0">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Puntaje</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for usuario in detalle %}
+                  {% if usuario.carrera == fila.carrera %}
+                  <tr>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.correo }}</td>
+                    <td class="fw-bold text-primary">{{ usuario.puntaje_total }}</td>
+                  </tr>
+                  {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

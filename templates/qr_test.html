@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Código QR - Test Vocacional{% endblock %}
+{% block content %}
+
+<style>
+  /* 🎨 Colores institucionales */
+  :root {
+    --rojo-instituto: #d62828;
+    --azul-instituto: #003566;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--azul-instituto), #0d1b2a);
+    color: #fff;
+  }
+
+  .card {
+    border: 3px solid var(--rojo-instituto);
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ✨ Animación del QR */
+  .qr-container img {
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px var(--rojo-instituto)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--azul-instituto)); }
+  }
+
+  /* 🧭 Botones */
+  .btn-primary-custom {
+    background-color: var(--azul-instituto);
+    border-color: var(--azul-instituto);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .btn-primary-custom:hover {
+    background-color: var(--rojo-instituto);
+    border-color: var(--rojo-instituto);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background-color: var(--rojo-instituto);
+    border-color: var(--rojo-instituto);
+  }
+
+  .btn-secondary:hover {
+    background-color: #b71c1c;
+    border-color: #b71c1c;
+  }
+
+  /* 🏫 Encabezado */
+  h2 {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  }
+
+  p.text-muted {
+    color: #333 !important;
+  }
+</style>
+
+<div class="container text-center mt-5 mb-5">
+  <h2 class="fw-bold mb-4">📱 Escanea el Código QR para Realizar el Test Vocacional</h2>
+
+  <div class="card shadow-lg mx-auto p-3" style="max-width: 400px;">
+    <div class="card-body qr-container">
+      <img src="{{ url_for('codigo_qr') }}" alt="Código QR" class="img-fluid mb-3 rounded">
+      <p class="text-muted mb-3">Apunta tu cámara al código o usa una app de escaneo.</p>
+      <a href="{{ url_for('codigo_qr') }}" download="codigo_qr.png" class="btn btn-primary-custom px-4 py-2">
+        ⬇️ Descargar QR
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary px-4 py-2">
+      ⬅️ Volver al inicio
+    </a>
+  </div>
+</div>
+
+{% endblock %}

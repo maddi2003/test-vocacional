@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}Resultados - Admin{% endblock %}
+
+{% block content %}
+<style>
+  :root {
+    --rojo-instituto: #d62828;
+    --azul-instituto: #003566;
+    --verde-instituto: #28a745;
+    --gris-claro: #f8f9fa;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--azul-instituto), #0d1b2a);
+    color: #fff;
+  }
+
+  h2 {
+    color: var(--rojo-instituto);
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+    animation: fadeInDown 1s ease;
+  }
+
+  .btn-outline-secondary {
+    color: var(--azul-instituto);
+    border-color: var(--azul-instituto);
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: var(--azul-instituto);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .card {
+    background-color: var(--gris-claro);
+    border-radius: 20px;
+    border-left: 6px solid var(--rojo-instituto);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+
+  table thead th {
+    background-color: var(--azul-instituto);
+    color: #fff;
+    border: none;
+  }
+
+  table tbody tr:hover {
+    background-color: rgba(214, 40, 40, 0.1);
+  }
+
+  .badge {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .btn-info {
+    border-radius: 50px;
+    padding: 0.35rem 0.8rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,123,255,0.6);
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+</style>
+
+<div class="container mt-5 mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">📊 Resultados de Usuarios</h2>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+      ⬅ Volver al inicio
+    </a>
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <table class="table table-hover align-middle text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Carrera Recomendada</th>
+            <th scope="col">Puntaje</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in resultados %}
+          <tr>
+            <td class="fw-semibold">{{ r.id_resultado }}</td>
+            <td>{{ r.usuario_nombre }}</td>
+            <td>
+              <span class="badge bg-success px-3 py-2">
+                {{ r.carrera_recomendada }}
+              </span>
+            </td>
+            <td class="fw-bold text-primary">{{ r.puntaje_total }}</td>
+            <td class="text-muted">{{ r.fecha }}</td>
+            <td>
+              <a href="{{ url_for('historial', id_usuario=r.id_usuario) }}" class="btn btn-info btn-sm">
+                Ver historial
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

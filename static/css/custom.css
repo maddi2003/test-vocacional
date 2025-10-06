@@ -1,0 +1,23 @@
+/* Animación suave para tarjetas */
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Transición suave para botones */
+.btn {
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* Transición para enlaces del sidebar */
+.nav-sidebar .nav-link {
+    transition: background-color 0.2s, color 0.2s;
+}

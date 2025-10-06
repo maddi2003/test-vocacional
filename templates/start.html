@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Test{% endblock %}
+
+{% block content %}
+<style>
+  :root {
+    --rojo-instituto: #d62828;
+    --azul-instituto: #003566;
+  }
+
+  body {
+    background: linear-gradient(135deg, var(--azul-instituto), #0d1b2a);
+    color: #fff;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: 3px solid var(--rojo-instituto);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .form-label {
+    color: var(--azul-instituto);
+  }
+
+  input.form-control {
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  input.form-control:focus {
+    border-color: var(--azul-instituto);
+    box-shadow: 0 0 8px rgba(0, 53, 102, 0.4);
+  }
+
+  .btn-start {
+    background: linear-gradient(to right, var(--rojo-instituto), var(--azul-instituto));
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-start:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, var(--azul-instituto), var(--rojo-instituto));
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+  }
+
+  h3 {
+    color: var(--rojo-instituto);
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 1s ease;
+  }
+
+  p.text-muted {
+    color: #333 !important;
+  }
+
+  .icon-large {
+    font-size: 4.5rem;
+    color: var(--azul-instituto);
+    text-shadow: 0 0 10px rgba(0, 53, 102, 0.5);
+    animation: float 3s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+</style>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+  <div class="card p-4 col-md-6 col-lg-5">
+    <div class="card-body text-center">
+
+      <!-- Logo del instituto -->
+      <div class="mb-4 text-center">
+        <img src="{{ url_for('static', filename='img/logo_instituto.jpg') }}" 
+             alt="Instituto José Castillo" style="max-width:120px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
+      </div>
+
+      <!-- Título -->
+      <h3 class="fw-bold mb-3">📝 Iniciar Test Vocacional</h3>
+
+      <p class="text-muted mb-4">
+        Completa tus datos para comenzar y descubre la carrera que mejor se ajusta a tus intereses.
+      </p>
+
+      <!-- Formulario -->
+      <form method="post">
+        <div class="mb-3 text-start">
+          <label class="form-label fw-semibold">Nombre completo</label>
+          <input class="form-control" name="nombre" placeholder="Ej: Juan Pérez" required>
+        </div>
+        <div class="mb-4 text-start">
+          <label class="form-label fw-semibold">Correo electrónico <span class="text-muted">(opcional)</span></label>
+          <input class="form-control" name="correo" type="email" placeholder="Ej: juan@gmail.com">
+        </div>
+
+        <!-- Botón -->
+        <button class="btn btn-start w-100 py-2 shadow-lg">
+          🚀 Comenzar
+        </button>
+      </form>
+
+      <!-- Ícono decorativo -->
+      <div class="mt-5">
+        <i class="bi bi-mortarboard-fill icon-large"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

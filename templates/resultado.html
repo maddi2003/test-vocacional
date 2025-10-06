@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Resultado{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Resultado</h2>
+<div class="card mx-auto mt-4" style="max-width:500px;">
+  <div class="card-body text-center">
+    <h4>Usuario: {{ resultado['id_usuario'] }}</h4>
+
+    <!-- Carrera recomendada con colores del instituto -->
+    <p><b>Carrera recomendada:</b></p>
+    <span class="badge 
+      {% if resultado['carrera'] == 'Sistemas Informaticos' %}bg-primary
+      {% elif resultado['carrera'] == 'Mecanica Automotriz' %}bg-danger
+      {% elif resultado['carrera'] == 'Electromecanica' %} 
+        style="background:linear-gradient(to right,#0d6efd,#dc3545); color:white;"
+      {% elif resultado['carrera'] == 'Industria de Alimentos' %}bg-white border border-primary text-dark
+      {% endif %} px-4 py-2 fs-5">
+      {{ resultado['carrera'] }}
+    </span>
+
+    <!-- Mensaje motivador -->
+    <p class="mt-4 fs-6">🎉 ¡Excelente! Esta recomendación puede servirte como punto de partida para descubrir tu camino profesional.</p>
+
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Volver al inicio</a>
+  </div>
+</div>
+{% endblock %}
